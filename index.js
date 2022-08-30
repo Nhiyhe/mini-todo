@@ -71,6 +71,10 @@ app.delete("/todos/:id", async (req, res) => {
   }
 });
 
+app.use((err, req, res, nxt) => {
+  res.status(500).json({ message: "Server Error", error: err.message });
+});
+
 const PORT = process.env.PORT || 7000;
 
 app.listen(PORT, () => console.log("Server is listening", PORT));
